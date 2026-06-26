@@ -2,7 +2,6 @@ package smartroom;
 import java.util.ArrayList;
 
 public class BookingManager {
-    // ArrayList implementation (Requirement 3) 
     private ArrayList<User> userList;
     private ArrayList<Room> roomList;
 
@@ -13,23 +12,29 @@ public class BookingManager {
 
     public void addUser(User user) {
         userList.add(user);
-        // Removed the print statement so system initialization remains hidden from the user
     }
 
-    // Method Overloading (Requirement 6): Signature 1 
+    public void registerUser(String name, String username, String password) {
+    for (User u : userList) {
+        if (u.getUsername().equals(username)) {
+            System.out.println("Error: Username already exists.");
+            return;
+        }
+    }
+    userList.add(new RegularUser(name, username, password));
+    System.out.println("Registration successful! Welcome, " + name);
+}
+
     public void addRoom(Room room) {
         roomList.add(room);
-        // Removed the print statement so system initialization remains hidden from the user
     }
 
-    // Method Overloading (Requirement 6): Signature 2 (Used by Admin actively)
     public void addRoom(String roomNumber, int capacity, boolean hasProjector) {
         Room newRoom = new Room(roomNumber, capacity, false, hasProjector);
         roomList.add(newRoom);
         System.out.println("Success: Room " + roomNumber + " has been added to the system.");
     }
 
-    // Exception Handling (Requirement 8) 
     public User login(String username, String password) throws BookingException {
         for (User u : userList) {
             if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
@@ -40,7 +45,7 @@ public class BookingManager {
     }
 
     public void bookRoom(RegularUser user, String roomNumber) throws BookingException {
-        if (user.getAssignRoom() != null) {
+        if (user.getAssignRoom()!= null) {
             throw new BookingException("Booking failed: You already have an active room reservation.");
         }
 

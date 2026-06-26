@@ -13,7 +13,7 @@ To get started, you need to download (clone) the code to your local machine.
    ```bash
    cd Documents
    ```
-3. Clone the repository using this command *(make sure to replace the URL with our actual GitHub repo link)*:
+3. Clone the repository using this command :
    ```bash
    git clone https://github.com/shelingng/Meeting-Room-Reservation-System
    ```

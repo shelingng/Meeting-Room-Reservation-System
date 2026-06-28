@@ -67,28 +67,39 @@ public class BookingTest {
                                     manager.addRoom(roomNum, cap, proj);
                                     break;
                                 case 2: 
-                                    manager.viewAllUser(); break;
+                                    manager.viewAllUser(); 
+                                    break;
                                 case 3: 
-                                    manager.viewAllRoom(); break;
+                                    manager.viewAllRoom(); 
+                                    break;
                                 case 4: 
-                                    sessionActive = false; break;
+                                    sessionActive = false; 
+                                    break;
                             }
                         } else {
                             RegularUser regUser = (RegularUser) loggedInUser;
                             switch (choice) {
                                 case 1: 
-                                    manager.viewAvailableRooms(); break;
+                                    manager.viewAvailableRooms(); 
+                                    break;
                                 case 2:
                                     System.out.print("Enter Room to book: ");
                                     String roomToBook = scanner.nextLine();
-                                    try { manager.bookRoom(regUser, roomToBook); } catch (BookingException e) { System.out.println(e.getMessage()); }
+                                    try { 
+                                        manager.bookRoom(regUser, roomToBook); 
+                                    } catch (BookingException e) {
+                                         System.out.println(e.getMessage()); 
+                                    }
                                     break;
                                 case 3: 
-                                    regUser.displayMyBooking(); break;
+                                    regUser.displayMyBooking(); 
+                                    break;
                                 case 4:
-                                    regUser.cancelBooking(); break;
+                                    regUser.cancelBooking(); 
+                                    break;
                                 case 5: 
-                                    sessionActive = false; break;
+                                    sessionActive = false; 
+                                    break;
                             }
                         }
                     }

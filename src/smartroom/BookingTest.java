@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class BookingTest {
     public static void main(String[] args) {
-        BookingManager manager = new BookingManager();
-        Scanner scanner = new Scanner(System.in);
+        BookingManager manager=new BookingManager();
+        Scanner scanner=new Scanner(System.in);
 
         manager.addUser(new AdminUser("Admin", "admin", "admin123"));
         manager.addUser(new RegularUser("Ng She Ling", "sheling", "student123"));
@@ -12,7 +12,7 @@ public class BookingTest {
         manager.addRoom(new Room("B202", 10, false, false));
 
         System.out.println("==========================================");
-        System.out.println("   Welcome to Smart Room Booking System   ");
+        System.out.println("   Welcome to Smart Room Booking System");
         System.out.println("==========================================");
 
         while (true) {
@@ -21,7 +21,7 @@ public class BookingTest {
             System.out.println("2. Register");
             System.out.println("Type 'exit' to quit");
             System.out.print("Select an option: ");
-            String option = scanner.nextLine();
+            String option=scanner.nextLine();
 
             if (option.equalsIgnoreCase("exit")) {
                 System.out.println("Exiting system. Goodbye!");
@@ -38,33 +38,35 @@ public class BookingTest {
 
                 manager.registerUser(name, username, password);
 
-            } else if (option.equals("1")) {
+            }
+            
+            else if (option.equals("1")) {
                 System.out.print("Enter username: ");
-                String username = scanner.nextLine();
+                String username=scanner.nextLine();
                 System.out.print("Enter password: ");
-                String password = scanner.nextLine();
+                String password=scanner.nextLine();
 
                 try {
-                    User loggedInUser = manager.login(username, password);
-                    System.out.println("\nLogin successful! Welcome, " + loggedInUser.getName());
+                    User user=manager.login(username,password);
+                    System.out.println("\nLogin successful! Welcome, " + user.getName());
 
-                    boolean sessionActive = true;
-                    while (sessionActive) {
+                    boolean status=true;
+                    while (status) {
                         System.out.println();
-                        loggedInUser.showMenu();
+                        user.showMenu();
                         System.out.print("Select an option: ");
-                        int choice = Integer.parseInt(scanner.nextLine());
+                        int choice=Integer.parseInt(scanner.nextLine());
 
-                        if (loggedInUser.isAdmin()) {
+                        if (user.isAdmin()) {
                             switch (choice) {
                                 case 1:
                                     System.out.print("Enter Room Number: ");
-                                    String roomNum = scanner.nextLine();
+                                    String roomNum=scanner.nextLine();
                                     System.out.print("Enter Capacity: ");
-                                    int cap = Integer.parseInt(scanner.nextLine());
+                                    int cap=Integer.parseInt(scanner.nextLine());
                                     System.out.print("Projector (true/false): ");
-                                    boolean proj = Boolean.parseBoolean(scanner.nextLine());
-                                    manager.addRoom(roomNum, cap, proj);
+                                    boolean proj=Boolean.parseBoolean(scanner.nextLine());
+                                    manager.addRoom(roomNum,cap,proj);
                                     break;
                                 case 2: 
                                     manager.viewAllUser(); 
@@ -73,21 +75,23 @@ public class BookingTest {
                                     manager.viewAllRoom(); 
                                     break;
                                 case 4: 
-                                    sessionActive = false; 
+                                    status = false; 
                                     break;
                             }
-                        } else {
-                            RegularUser regUser = (RegularUser) loggedInUser;
+                        }
+                        else {
+                            RegularUser regUser = (RegularUser) user;
                             switch (choice) {
                                 case 1: 
                                     manager.viewAvailableRooms(); 
                                     break;
                                 case 2:
                                     System.out.print("Enter Room to book: ");
-                                    String roomToBook = scanner.nextLine();
+                                    String roomToBook=scanner.nextLine();
                                     try { 
-                                        manager.bookRoom(regUser, roomToBook); 
-                                    } catch (BookingException e) {
+                                        manager.bookRoom(regUser,roomToBook); 
+                                    }
+                                    catch (BookingException e) {
                                          System.out.println(e.getMessage()); 
                                     }
                                     break;
@@ -98,14 +102,14 @@ public class BookingTest {
                                     regUser.cancelBooking(); 
                                     break;
                                 case 5: 
-                                    sessionActive = false; 
+                                    status=false; 
                                     break;
                             }
                         }
                     }
                 } 
                 catch (BookingException e) { 
-                    System.out.println("Error: " + e.getMessage()); 
+                    System.out.println("Error: "+e.getMessage()); 
                 }
             }
         }

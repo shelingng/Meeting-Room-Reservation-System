@@ -1,8 +1,7 @@
 package smartroom;
-
 public class AdminUser extends User {
-    public AdminUser(String name, String username, String password) {
-        super(name, username, password);
+    public AdminUser(String name,String username,String password) {
+        super(name,username,password);
     }
 
     @Override

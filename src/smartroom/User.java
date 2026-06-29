@@ -6,6 +6,13 @@ public abstract class User implements MenuDisplayable {
     private String password;
     private Room assignRoom; 
 
+    public User() {
+        this.name="";
+        this.username="";
+        this.password="";
+        this.assignRoom=null;
+    }
+
     public User(String name,String username,String password) {
         this.name=name;
         this.username=username;
